@@ -8,9 +8,56 @@
 
 import Foundation
 import UIKit
+import AudioToolbox
 
 class MyTimer: NSObject {
     
+    var selectedTime: TimeInterval?
+    var timeRemaining: TimeInterval = 0.0
+    var timer: Timer?
+    
+    func startTimerWith(selectedTime: TimeInterval) {
+        
+        timeRemaining = selectedTime
+        
+        timer = Timer(timeInterval: 1, repeats: true) { (timer) in
+            
+            if self.timeRemaining == 0 {
+                // Vibrate
+                
+                AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+                // Reset timeRemaining back to selectedTime
+                self.timeRemaining = selectedTime
+            }
+            
+            self.timeRemaining -= 1.0
+            print(self.timeRemaining)
+            // Send notification to update UI
+            
+            NotificationCenter.default.post(name: Notification.Name("timeRemainingDidChange"), object: self.timeRemaining)
+        }
+        
+        timer?.fire()
+        
+    }
+    
+    var isOn: Bool {
+        if timeRemaining == 0 {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func stopTimer() {
+        timer?.invalidate()
+        
+        // Update UI
+        
+    }
+    
+    
+    /*
     var timeRemaining: TimeInterval?
     var timer: Timer?
     
@@ -30,14 +77,21 @@ class MyTimer: NSObject {
     }
     
     fileprivate func secondTick() {
-        guard let timeRemaining = timeRemaining else {return}
-        if timeRemaining > 0 {
-            self.timeRemaining = timeRemaining - 1
+        guard var timeRemaining = timeRemaining else {return}
+        let originalValue = timeRemaining
+        repeat {
+            timeRemaining = timeRemaining - 1
             print(timeRemaining)
-        } else {
-            timer?.invalidate()
-            self.timeRemaining = nil
+            
+        } while timeRemaining > 0
+        if timeRemaining == 0 {
+            timeRemaining = originalValue
         }
+//        } else {
+//            timer?.invalidate()
+////            self.timeRemaining = nil
+//            self.timeRemaining = or
+//        }
     }
     
     func startTimer(_ time: TimeInterval) {
@@ -54,4 +108,5 @@ class MyTimer: NSObject {
             timeRemaining = nil
         }
     }
+ */
 }

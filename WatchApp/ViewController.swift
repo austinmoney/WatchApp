@@ -16,30 +16,25 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     var time: MyTimer? {
         didSet {
-            updateViews()
+//            updateTimerLabel()
         }
-    }
-    
-    func updateViews() {
-        label.text = String(describing: myTimer.timeRemaining)
     }
     
     @IBAction func buttonTapped(_ sender: Any) {
         if myTimer.isOn {
             myTimer.stopTimer()
         } else {
-            myTimer.startTimer(TimeInterval(pickerView.selectedRow(inComponent: 0)))
+            myTimer.startTimerWith(selectedTime: TimeInterval(pickerView.selectedRow(inComponent: 0)))
         }
         setView()
     }
     
-//    let numbers =
     let array = Array(1...60)
     
     let myTimer = MyTimer()
     
     func setView() {
-        updateTimerLabel()
+//        updateTimerLabel()
         // If timer is running, start button title should say "Cancel". If timer is not running, title should say "Start nap"
         if myTimer.isOn {
             button.setTitle("Cancel", for: UIControlState())
@@ -48,8 +43,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         }
     }
     
-    func updateTimerLabel() {
-        label.text = myTimer.timeAsString()
+    @ objc func updateTimerLabel(notification: Notification) {
+        label.text = String(myTimer.timeRemaining)
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -76,12 +71,17 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTimerLabel(notification:)), name: Notification.Name("timeRemainingDidChange"), object: nil)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+//    @objc func updateLabel(notification: Notification) {
+//        label.text = String(myTimer.timeRemaining)
+//    }
 
 
 }
