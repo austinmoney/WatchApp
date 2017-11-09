@@ -11,11 +11,37 @@ import UIKit
 import AudioToolbox
 
 class MyTimer: NSObject {
-    
+    /*
     var selectedTime: TimeInterval?
-    var timeRemaining: TimeInterval = 0.0
+    var timeRemaining: TimeInterval = 1
     var timer: Timer?
+    var isTimerRunning = false
     
+    func runTimer(selectedTime: TimeInterval) {
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(ViewController.updateTimer)), userInfo: nil, repeats: true)
+    }
+    
+    func stopTimer() {
+        timer?.invalidate()
+        
+        // Update UI
+        
+    }
+    
+//    @objc func updateTimer() {
+//        timeRemaining -= 1     //This will decrement(count down)the seconds.
+//        ViewController.label.text = "\(timeRemaining)" //This will update the label.
+//    }
+    
+//    func startTimerWith(selectedTime: TimeInterval) {
+//        
+//    }
+ 
+ */
+    
+    
+    
+  /*
     func startTimerWith(selectedTime: TimeInterval) {
         
         timeRemaining = selectedTime
@@ -55,7 +81,7 @@ class MyTimer: NSObject {
         // Update UI
         
     }
-    
+    */
     
     /*
     var timeRemaining: TimeInterval?
