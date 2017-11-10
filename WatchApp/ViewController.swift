@@ -9,6 +9,7 @@
 import UIKit
 import AudioToolbox
 
+
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     // MARK: - IBOutlets and IBActions
@@ -47,7 +48,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     @objc func updateTimer() {
         if seconds == 0 {
             timer.invalidate()
-            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+//            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
             seconds = Double(array[pickerView.selectedRow(inComponent: 0)])
             label.text = "\(seconds)"
             runTimer()
@@ -86,7 +87,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        NotificationCenter.default.addObserver(self, selector: #selector(updateTimerLabel(notification:)), name: Notification.Name("timeRemainingDidChange"), object: nil)
         
     }
     

@@ -21,6 +21,7 @@
 		CABA39731FB53BDD00A2360A /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABA39721FB53BDD00A2360A /* NotificationController.swift */; };
 		CABA39751FB53BDD00A2360A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABA39741FB53BDD00A2360A /* Assets.xcassets */; };
 		CABA397A1FB53BDD00A2360A /* WatchAppExtension.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = CABA395D1FB53BDD00A2360A /* WatchAppExtension.app */; };
+		CABA39851FB6265B00A2360A /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90E70F1FAE854500619BFD /* Timer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -309,6 +310,7 @@
 			files = (
 				CABA39731FB53BDD00A2360A /* NotificationController.swift in Sources */,
 				CABA39711FB53BDD00A2360A /* ExtensionDelegate.swift in Sources */,
+				CABA39851FB6265B00A2360A /* Timer.swift in Sources */,
 				CABA396F1FB53BDD00A2360A /* InterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
