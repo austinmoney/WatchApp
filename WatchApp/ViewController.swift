@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox
 
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
@@ -84,6 +85,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     @objc func updateTimer() {
         if seconds == 0 {
+            timer.invalidate()
+            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+            label.text = "5"
             runTimer()
             seconds = 5
         } else {
