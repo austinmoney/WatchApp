@@ -14,19 +14,20 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="WatchAppExtension" customModuleProvider="target">
                     <items>
-                        <label width="136" alignment="left" text="Label" textAlignment="center" id="eAB-zL-DzH"/>
+                        <label width="136" alignment="left" text="Seconds" textAlignment="right" id="eAB-zL-DzH"/>
                         <picker height="72" alignment="left" id="1O8-zG-7NJ">
                             <connections>
-                                <action selector="pickerDidChange:" destination="AgC-eL-Hgc" id="JL6-GT-xZL"/>
+                                <action selector="pickerDidChange:" destination="AgC-eL-Hgc" id="AEs-cb-p6b"/>
                             </connections>
                         </picker>
-                        <button width="1" height="48" alignment="left" title="Button" id="b2P-vd-5eR">
+                        <button width="1" height="48" alignment="left" title="Start/Stop" id="b2P-vd-5eR">
                             <connections>
                                 <action selector="buttonTapped" destination="AgC-eL-Hgc" id="reP-Ls-DhA"/>
                             </connections>
                         </button>
                     </items>
                     <connections>
+                        <outlet property="button" destination="b2P-vd-5eR" id="MPS-3C-3jc"/>
                         <outlet property="label" destination="eAB-zL-DzH" id="zqA-GQ-jYH"/>
                         <outlet property="pickerView" destination="1O8-zG-7NJ" id="cBV-qd-7FC"/>
                     </connections>

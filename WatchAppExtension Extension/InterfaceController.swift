@@ -9,21 +9,24 @@
 import WatchKit
 import Foundation
 
-
 class InterfaceController: WKInterfaceController {
     // MARK: - Properties
     
+    @IBOutlet var button: WKInterfaceButton!
     @IBOutlet var label: WKInterfaceLabel!
     @IBOutlet var pickerView: WKInterfacePicker!
-    
-    @IBAction func pickerDidChange(value: Int) {
+    var hapticType:WKHapticType = .notification
+    var pickerValue: Int = 0
+    @IBAction func pickerDidChange(_ value: Int) {
+//        self.pickerView.setSelectedItemIndex(0)
+        pickerValue = value
         
-        pickerView.setSelectedItemIndex(0)
-    
     }
     
     @IBAction func buttonTapped() {
+       
         if isTimerRunning == false {
+            seconds = pickerValue*5
             runTimer()
             isTimerRunning = true
             pickerView.setEnabled(false)
@@ -39,12 +42,21 @@ class InterfaceController: WKInterfaceController {
     //    let array = Array(1...60)
     let array = [1,5,10,15,20,25,30,35,40,45,50,55,60]
     var secondList: [(String, String)] = [
-        ("1", "number"),
+        ("-", "number"),
         ("5", "number"),
         ("10", "number"),
-        ("15", "number")
+        ("15", "number"),
+        ("20", "number"),
+        ("25", "number"),
+        ("30", "number"),
+        ("35", "number"),
+        ("40", "number"),
+        ("45", "number"),
+        ("50", "number"),
+        ("55", "number"),
+        ("60", "number")
         ]
-    var seconds = 5.0
+    var seconds = 5
     var timer = Timer()
     var isTimerRunning = false
     var resumeTapped = false
@@ -57,11 +69,13 @@ class InterfaceController: WKInterfaceController {
     
     @objc func updateTimer() {
         if seconds == 0 {
+//            WKInterfaceDevice.current().play(.click)
             timer.invalidate()
-            // TODO: 
+            // TODO:
             
 //            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
-            seconds = pickerView.selectedrow
+            WKInterfaceDevice().play(.notification)
+            seconds = pickerValue*5
             label.setText("\(seconds)")
             runTimer()
         } else {
@@ -97,6 +111,7 @@ class InterfaceController: WKInterfaceController {
             return pickerItem
         }
         pickerView.setItems(pickerItems)
+//        pickerView.setSelectedItemIndex(3)
     }
     
     override func didDeactivate() {
