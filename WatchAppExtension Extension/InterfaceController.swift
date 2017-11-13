@@ -69,17 +69,14 @@ class InterfaceController: WKInterfaceController {
     
     @objc func updateTimer() {
         if seconds == 0 {
-//            WKInterfaceDevice.current().play(.click)
+//            WKInterfaceDevice.current().play(.success)
             timer.invalidate()
-            // TODO:
-            
-//            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
-            WKInterfaceDevice().play(.notification)
             seconds = pickerValue*5
             label.setText("\(seconds)")
             runTimer()
         } else {
             seconds -= 1
+            if seconds == 0 { WKInterfaceDevice.current().play(.success) }
             label.setText("\(seconds)")
         }
     }
